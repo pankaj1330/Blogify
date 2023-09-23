@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head.ejs') %>
+    <title>Add blog</title>
+</head>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <div class="container mt-4">
+        <% if(locals.successfull){ %>
+            <div class="alert alert-info mt-4" role="info">
+              <%= locals.successfull %>
+            </div>
+          <% } %>
+
+        <form action="/addBlog" method="post" enctype="multipart/form-data">      
+        <div class="mb-3">
+            <input type="file" class="form-control" id="coverImage" name="coverImage" required>
+        </div>
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+        <div class="mb-3">
+            <textarea class="form-control" placeholder="add content to blog" id="body" name="body" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <%- include('./partials/script.ejs') %>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head.ejs') %>
+    <title>Document</title>
+</head>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <div class="container mt-5">
+        <h1><%= blog.title %></h1>
+        <img src="<%= blog.coverImage %>" class="w-sm-100" style="max-width:400px" alt="...">
+        <pre><%= blog.body %></pre>
+        <% if(locals.deleteBlog) { %>
+        <a href="/deleteBlog/<%= blog._id %>">
+            <button class="btn btn-danger">Delete Blog</button>
+        </a>
+        <% } %>
+    </div>
+
+    <% if(locals.user) { %>
+    <div class="container mt-3">
+        <form action="/comment/<%= blog._id %>" method="post">      
+            <div class="mb-3">
+                <textarea class="form-control" placeholder="comment" id="content" name="content" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Add</button>
+        </form>
+    </div>
+    <% } %>
+    <% if(locals.comments.length > 0) { %>
+    <div class="container mt-1">
+        <h4 class="text-danger mb-4">Comments (<%= comments.length %>)</h4>
+        <% comments.forEach(comment => { %>
+            <div class="container-fluid mb-2">
+                <div class="d-flex align-items-center mb-1">
+                    <img src="<%= comment.writtenBy.profileImg %>" class="me-1" style="width:40px" alt="...">
+                    <h6 class="d-inline"> <%= comment.writtenBy.fullName.toUpperCase() %> </h6>
+                </div>
+                <pre><%= comment.content.trim() %></pre>
+            </div>
+        <% }) %>
+    </div>
+    <% } %>
+
+    <%- include('./partials/script.ejs') %>
+</body>
+</html>
