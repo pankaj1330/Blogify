@@ -57,12 +57,21 @@ router.get('/view/:id',async (req,res)=>{
 
 router.post('/addBlog',upload.single('coverImage'),(req,res)=>{
     const {title,body} = req.body;
-    Blog.create({
+    if(!req.file){
+      Blog.create({
+        title,
+        body,
+        createdBy : req.user._id
+      });
+    }
+    else{
+      Blog.create({
         title,
         body,
         coverImage  : `/uploads/blogimg/${req.file.filename}`,
         createdBy : req.user._id
-    });
+      });
+    }
     return res.render('addBlog',{
         successfull : "your blog successfully created",
         user : req.user
@@ -97,18 +106,19 @@ router.get('/yourBlogs',async(req,res)=>{
 router.get('/deleteBlog/:id',async(req,res)=>{
   const blogId = req.params.id;
   const delBlog = await Blog.findById({_id : blogId});
-  console.log(delBlog);
-  const delBlogImg = delBlog.coverImage;
+  if(!delBlog){
+    return res.redirect('/yourBlogs');
+  }
+  if(delBlog.coverImage){
+    const delBlogImg = delBlog.coverImage;
+    fs.unlink(delBlogImg, err => {
+      if (err) {
+        console.log(err);
+      }
+    })
+  }
   await Blog.deleteOne({_id : blogId});
 
-
-  fs.unlink(delBlogImg, err => {
-    if (err) {
-      console.log(err);
-    }
-
-    console.log('File is deleted.')
-  })
   return res.redirect('/yourBlogs');
 })
 module.exports = router;

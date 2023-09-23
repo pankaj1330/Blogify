@@ -15,14 +15,14 @@
 
         <form action="/addBlog" method="post" enctype="multipart/form-data">      
         <div class="mb-3">
-            <input type="file" class="form-control" id="coverImage" name="coverImage" required>
+            <input type="file" class="form-control" id="coverImage" name="coverImage">
         </div>
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
             <input type="text" class="form-control" id="title" name="title" required>
         </div>
         <div class="mb-3">
-            <textarea class="form-control" placeholder="add content to blog" id="body" name="body" required></textarea>
+            <textarea class="form-control" placeholder="add content to blog" id="body" name="body" rows="8" required></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
         </form>
