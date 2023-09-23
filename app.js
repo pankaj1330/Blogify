@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
-
+mongoose.set('strictQuery', true);
 
 const Blog = require('./models/blog')
 const userRoutes = require('./routes/userRoute');
