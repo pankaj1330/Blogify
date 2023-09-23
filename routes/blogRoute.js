@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
 const router = Router();
 
 router.get('/addBlog',(req,res)=>{
-    return res.render('addblog',{
+    return res.render('addBlog',{
         user : req.user
     });
 })
@@ -84,11 +84,11 @@ router.get('/yourBlogs',async(req,res)=>{
   const userId = req.user._id;
   const yourBlogs = await Blog.find({createdBy : userId});
   if(!yourBlogs){
-    return res.render('yourblog',{
+    return res.render('yourBlog',{
       user : req.user
     })
   }
-  return res.render('yourblog',{
+  return res.render('yourBlog',{
     user : req.user,
     blogs : yourBlogs
   })
