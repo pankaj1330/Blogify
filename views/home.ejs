@@ -12,7 +12,7 @@
                 <div class="col col-12 col-sm-6 col-md-3">
                     <div class="card">
                         <% if(blog.coverImage) { %>
-                        <img src="<%= blog.coverImage %>" class="card-img-top" alt="...">
+                            <img src="<%= blog.coverImage %>" class="card-img-top image" alt="..." id="<%= blog.coverImage %>" onerror="err('<%= blog.coverImage %>')" /> 
                         <% } %>
                         <div class="card-body">
                             <h5 class="card-title"><%= blog.title %></h5>
@@ -24,5 +24,11 @@
         </div>
     </div>
     <%- include('./partials/script.ejs') %>
+    <script>
+        function err(id){
+            const ele = document.getElementById(id);
+            ele.style.display = "none";
+        }
+    </script>
 </body>
 </html>

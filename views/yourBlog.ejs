@@ -12,7 +12,9 @@
                 <% blogs.forEach(blog => { %>
                     <div class="col col-12 col-sm-6 col-md-3">
                         <div class="card">
-                            <img src="<%= blog.coverImage %>" class="card-img-top" alt="...">
+                            <% if(blog.coverImage) { %>
+                                <img src="<%= blog.coverImage %>" class="card-img-top image" alt="..." id="<%= blog.coverImage %>" onerror="err('<%= blog.coverImage %>')" />
+                            <% } %>
                             <div class="card-body">
                                 <h5 class="card-title"><%= blog.title %></h5>
                                 <a href="/view/<%= blog._id %>" class="btn btn-primary">view</a>
@@ -26,5 +28,11 @@
         <% } %>
     </div>
     <%- include('./partials/script.ejs') %>
+    <script>
+        function err(id){
+            const ele = document.getElementById(id);
+            ele.style.display = "none";
+        }
+    </script>
 </body>
 </html>
