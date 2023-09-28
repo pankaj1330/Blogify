@@ -7,21 +7,22 @@
 <body>
     <%- include('./partials/nav.ejs') %>
     <div class="container mt-5">
-        <div class="row g-2">
-            <% blogs.forEach(blog => { %>
-                <div class="col col-12 col-sm-6 col-md-3">
+        <% blogs.forEach(blog => { %>
+            <div class="row justify-content-center mt-3">
+                <div class="col col-12 col-md-8 col-lg-6">
                     <div class="card">
                         <% if(blog.coverImage) { %>
                             <img src="<%= blog.coverImage %>" class="card-img-top image" alt="..." id="<%= blog.coverImage %>" onerror="err('<%= blog.coverImage %>')" /> 
                         <% } %>
                         <div class="card-body">
                             <h5 class="card-title"><%= blog.title %></h5>
+                            <pre style="display: -webkit-box;-webkit-line-clamp: 3; -webkit-box-orient: vertical;overflow: hidden; font-family: sans-serif; letter-spacing: 1px;text-wrap: wrap;"><%= blog.body %></pre>
                             <a href="/view/<%= blog._id %>" class="btn btn-primary">view</a>
                         </div>
                     </div>
                 </div>
-            <% }) %>      
-        </div>
+            </div>
+        <% }) %>      
     </div>
     <%- include('./partials/script.ejs') %>
     <script>
