@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const secret = "@1284do//DJNA~*4="
 
 function generateToken(user){
     const payload = {
@@ -9,12 +8,12 @@ function generateToken(user){
         role : user.role
     };
 
-    const token = jwt.sign(payload,secret);
+    const token = jwt.sign(payload,process.env.secret);
     return token;
 }
 
 function verifyToken(token){
-    const user = jwt.verify(token,secret);
+    const user = jwt.verify(token,process.env.secret);
     return user;
 }
 
