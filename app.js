@@ -9,7 +9,7 @@ const userRoutes = require('./routes/userRoute');
 const blogRoutes = require('./routes/blogRoute');
 const { authenticateUser } = require('./middleware/auth');
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8000;
 
 mongoose.connect(process.env.MONGO_URL)
     .then(()=>{console.log("mongodb connected");})
