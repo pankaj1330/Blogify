@@ -24,3 +24,8 @@ Blogify is a web application where users can create, edit, and share blogs. User
 ### Frontend
 - **HTML**, **CSS**, **JavaScript**: Core web technologies for building a responsive and interactive interface.
 
+## Live Demo
+You can view the live version of the project at the following URL:
+[Live Demo](https://blogify-app-s2cl.onrender.com/)
+
+
